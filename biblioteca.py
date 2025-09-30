@@ -1,9 +1,33 @@
 def carica_da_file(file_path):
+    from operator import itemgetter
+    infile = open("file_path", 'r') #apro il file, il cui nome è passo come argomento dal main()
+    dizionario=dict() #creo un dizionario vuoto
+    cont=0 #uso un contatore per gestire la prima riga dove con numero di sezioni, dalla seconda l'elenco di libri
+    for line in infile:
+        if cont==0:
+            linea_pulita = line.strip("\n") #leggo prima riga e la pulisco
+            numero_sezioni=int( linea_pulita )
+            print(f"numero_sezioni:",numero_sezioni)
+            cont = 1
+        else:
+            linea_pulita = line.strip("\n").split( "," )
+            dizionario[linea_pulita[0]] ={'autore':linea_pulita[1],'anno':linea_pulita[2],'sezioni':linea_pulita[3]}
+    dizionario=sorted(dizionario.items(), key=itemgetter(3))
+    print(dizionario)
+    infile.close()
+
+    return dizionario
+
     """Carica i libri dal file"""
     # TODO
 
 
 def aggiungi_libro(biblioteca, titolo, autore, anno, pagine, sezione, file_path):
+    infile=open("file_path", 'a')
+    libro=input("inserire il nome del libro")
+    if libro in biblioteca:
+    infile.write(libro)
+
     """Aggiunge un libro nella biblioteca"""
     # TODO
 
@@ -33,12 +57,12 @@ def main():
         scelta = input("Scegli un'opzione >> ").strip()
 
         if scelta == "1":
-            while True:
-                file_path = input("Inserisci il path del file da caricare: ").strip()
-                biblioteca = carica_da_file(file_path)
-                if biblioteca is not None:
-                    break
-
+            #while True:
+                #file_path = input("Inserisci il path del file da caricare: ").strip()
+            biblioteca = carica_da_file()  #file_path
+                #if biblioteca is not None:
+                 # break
+'''
         elif scelta == "2":
             if not biblioteca:
                 print("Prima carica la biblioteca da file.")
@@ -94,7 +118,7 @@ def main():
         else:
             print("Opzione non valida. Riprova.")
 
-
+'''
 if __name__ == "__main__":
     main()
 
