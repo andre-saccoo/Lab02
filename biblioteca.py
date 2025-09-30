@@ -1,25 +1,24 @@
 def carica_da_file(file_path):
-    from operator import itemgetter
-    infile = open("file_path", 'r') #apro il file, il cui nome è passo come argomento dal main()
-    dizionario=dict() #creo un dizionario vuoto
-    cont=0 #uso un contatore per gestire la prima riga dove con numero di sezioni, dalla seconda l'elenco di libri
-    for line in infile:
-        if cont==0:
-            linea_pulita = line.strip("\n") #leggo prima riga e la pulisco
-            numero_sezioni=int( linea_pulita )
-            print(f"numero_sezioni:",numero_sezioni)
-            cont = 1
-        else:
-            linea_pulita = line.strip("\n").split( "," )
-            dizionario[linea_pulita[0]] ={'autore':linea_pulita[1],'anno':linea_pulita[2],'sezioni':linea_pulita[3]}
-    dizionario=sorted(dizionario.items(), key=itemgetter(3))
-    print(dizionario)
-    infile.close()
-
-    return dizionario
-
-    """Carica i libri dal file"""
-    # TODO
+    from operator import itemgetter                         # importo itemgetter per ordinare il dizionario per sezione
+    try:
+        infile = open("file_path", 'r')                     # apro il file, il cui nome è passo come argomento dal main()
+        dizionario=dict()                                   # creo un dizionario vuoto
+        cont=0                                              # uso un contatore per gestire la prima riga dove con numero di sezioni,
+        for line in infile:                                 # dalla seconda l'elenco di libri
+            if cont==0:
+                linea_pulita = line.strip("\n")             # leggo prima riga e la pulisco
+                numero_sezioni=int( linea_pulita )
+                print(f"numero_sezioni:",numero_sezioni)
+                cont = 1
+            else:
+                linea_pulita = line.strip("\n").split( "," ) # prendo gli elementi li pulisco e li sistemo nel dizionario
+                dizionario['titolo',linea_pulita[0]] ={'autore':linea_pulita[1],'anno':linea_pulita[2],'sezioni':linea_pulita[3]}
+        dizionario=sorted(dizionario.items(), key=itemgetter(3))
+        print(dizionario)                                    # stampo il dizionario per verifica
+        infile.close()
+        return dizionario                                    # se l'operazione di apertura va a buon fine restituisco il dizionario
+    except FileNotFoundError:
+        return None                                          # se l'apertura fallisce restituisco none come richiesto dal testo
 
 
 def aggiungi_libro(biblioteca, titolo, autore, anno, pagine, sezione, file_path):
@@ -27,10 +26,10 @@ def aggiungi_libro(biblioteca, titolo, autore, anno, pagine, sezione, file_path)
     libro=input("inserire il nome del libro")
     if libro in biblioteca:
     lista=input("inserire il nome del libro")
-    lista=infile.write(libro)mm
+    lista=infile.write(libro)
 
     """Aggiunge un libro nella biblioteca"""
-    # TODO
+    # TODO'''
 
 
 def cerca_libro(biblioteca, titolo):
@@ -48,6 +47,7 @@ def main():
     file_path = "biblioteca.csv"
 
     while True:
+        #stampo menù opzioni
         print("\n--- MENU BIBLIOTECA ---")
         print("1. Carica biblioteca da file")
         print("2. Aggiungi un nuovo libro")
@@ -57,13 +57,14 @@ def main():
 
         scelta = input("Scegli un'opzione >> ").strip()
 
+
         if scelta == "1":
-            #while True:
-                #file_path = input("Inserisci il path del file da caricare: ").strip()
-            biblioteca = carica_da_file()  #file_path
-                #if biblioteca is not None:
-                 # break
-'''
+            while True:
+                file_path = input("Inserisci il path del file da caricare: ").strip()
+                biblioteca = carica_da_file(file_path)  #file_path
+                if biblioteca is not None:
+                    break
+
         elif scelta == "2":
             if not biblioteca:
                 print("Prima carica la biblioteca da file.")
