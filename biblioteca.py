@@ -26,7 +26,7 @@ def aggiungi_libro(biblioteca, titolo, autore, anno, pagine, sezione, file_path)
     libro=input("inserire il nome del libro")
     if libro in biblioteca:
     lista=input("inserire il nome del libro")
-    lista=infile.write(libro)
+    lista=infile.write(libro) #commento prova
 
     """Aggiunge un libro nella biblioteca"""
     # TODO'''
