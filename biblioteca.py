@@ -2,7 +2,7 @@ def carica_da_file(file_path):
     from operator import itemgetter                         # importo itemgetter per ordinare il dizionario per sezione
     try:
         infile = open("file_path", 'r')                     # apro il file, il cui nome è passo come argomento dal main()
-        dizionario=dict()                                   # creo un dizionario vuoto
+        biblioteca=dict()                                   # creo un dizionario vuoto che vado poi a riempire con i libri
         cont=0                                              # uso un contatore per gestire la prima riga dove con numero di sezioni,
         for line in infile:                                 # dalla seconda l'elenco di libri
             if cont==0:
@@ -12,14 +12,15 @@ def carica_da_file(file_path):
                 cont = 1
             else:
                 linea_pulita = line.strip("\n").split( "," ) # prendo gli elementi li pulisco e li sistemo nel dizionario
-                dizionario['titolo',linea_pulita[0]] ={'autore':linea_pulita[1],'anno':linea_pulita[2],'sezioni':linea_pulita[3]}
-        dizionario=sorted(dizionario.items(), key=itemgetter(3))
-        print(dizionario)                                    # stampo il dizionario per verifica
+                biblioteca['titolo',linea_pulita[0]] ={'autore':linea_pulita[1],'anno':linea_pulita[2],'sezioni':linea_pulita[3]}
+        biblioteca=sorted(biblioteca.items(), key=itemgetter(3))
+        print(biblioteca)                                    # stampo il dizionario per verifica
         infile.close()
-        return dizionario                                    # se l'operazione di apertura va a buon fine restituisco il dizionario
+        return biblioteca                                    # se l'operazione di apertura va a buon fine restituisco il dizionario
     except FileNotFoundError:
         return None                                          # se l'apertura fallisce restituisco none come richiesto dal testo
 
+# finita
 
 def aggiungi_libro(biblioteca, titolo, autore, anno, pagine, sezione, file_path):
     infile=open("file_path", 'a')
@@ -29,9 +30,8 @@ def aggiungi_libro(biblioteca, titolo, autore, anno, pagine, sezione, file_path)
     lista=infile.write(libro) #commento prova
 
     """Aggiunge un libro nella biblioteca"""
-    # TODO'''
 
-
+'''
 def cerca_libro(biblioteca, titolo):
     """Cerca un libro nella biblioteca dato il titolo"""
     # TODO
@@ -40,30 +40,29 @@ def cerca_libro(biblioteca, titolo):
 def elenco_libri_sezione_per_titolo(biblioteca, sezione):
     """Ordina i titoli di una data sezione della biblioteca in ordine alfabetico"""
     # TODO
-
+'''
 
 def main():
-    biblioteca = []
-    file_path = "biblioteca.csv"
+    #biblioteca = []
+    file_path = "biblioteca.csv"                    #nome del file contenente l'elenco dei libri da organizzare
 
     while True:
-        #stampo menù opzioni
-        print("\n--- MENU BIBLIOTECA ---")
+        print("\n--- MENU BIBLIOTECA ---")          #stampo menù opzioni
         print("1. Carica biblioteca da file")
         print("2. Aggiungi un nuovo libro")
         print("3. Cerca un libro per titolo")
         print("4. Ordina titoli di una sezione")
         print("5. Esci")
-
         scelta = input("Scegli un'opzione >> ").strip()
-
 
         if scelta == "1":
             while True:
-                file_path = input("Inserisci il path del file da caricare: ").strip()
-                biblioteca = carica_da_file(file_path)  #file_path
+                biblioteca = carica_da_file(file_path)  #file_path inizializzato sopra
                 if biblioteca is not None:
                     break
+
+
+
 
         elif scelta == "2":
             if not biblioteca:
@@ -80,12 +79,18 @@ def main():
                 print("Errore: inserire valori numerici validi per anno, pagine e sezione.")
                 continue
 
-            libro = aggiungi_libro(biblioteca, titolo, autore, anno, pagine, sezione, file_path)
+            #libro = aggiungi_libro(biblioteca, titolo, autore, anno, pagine, sezione, file_path)
             if libro:
                 print(f"Libro aggiunto con successo!")
             else:
                 print("Non è stato possibile aggiungere il libro.")
 
+
+
+
+
+
+'''
         elif scelta == "3":
             if not biblioteca:
                 print("La biblioteca è vuota.")
@@ -119,8 +124,8 @@ def main():
             break
         else:
             print("Opzione non valida. Riprova.")
-
 '''
+
 if __name__ == "__main__":
     main()
 
