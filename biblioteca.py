@@ -19,11 +19,12 @@ def carica_da_file(file_path):
                 biblioteca[linea_pulita[0]] =[linea_pulita[1],linea_pulita[2],linea_pulita[3]]
         infile.close()
 
-        biblioteca = {k: v for k, v in sorted(biblioteca.items(), key=lambda x: x[1][2])}
+        biblioteca = {k: v for k, v in sorted(biblioteca.items(), key=itemgetter(1))}
 
-        #biblioteca = sorted(biblioteca.items(), key=itemgetter(3))
         # stampo il dizionario per verifica per mostrarlo all'utente
-        for libro in biblioteca:
+        #print(f"biblioteca: {biblioteca}")
+        for titolo, info in biblioteca.items():
+            print(f"titolo: {titolo}  informazioni: {info}")
 
         # se l'operazione di apertura va a buon fine restituisco il dizionario
         return biblioteca
@@ -31,7 +32,6 @@ def carica_da_file(file_path):
         # se l'apertura fallisce restituisco none come richiesto dal testo
         return None
 
-'''
 def aggiungi_libro(biblioteca, file_path):
     # controllo se file file_path è già stato aperto sopra
     if not biblioteca:
@@ -60,15 +60,6 @@ def aggiungi_libro(biblioteca, file_path):
         infile.write(f'{titolo},{anno},{pagine},{sezione}\n')
         infile.close()
         return True, biblioteca
-'''
-
-
-
-
-
-
-
-
 
 '''
 def cerca_libro(biblioteca, titolo):
@@ -102,7 +93,7 @@ def main():
                 if biblioteca is not None:
                     break
 
-        '''
+
         # scelta 2 aggiungo alla struttura dati il libro richiesto controllando non sia già presente, lo aggiungo anche al file
         elif scelta == "2":
             aggiunto=False
@@ -113,16 +104,7 @@ def main():
             else:
                 print("Non è stato possibile aggiungere il libro")
 
-
-
-
-
-
-
-
-
-
-
+'''
         elif scelta == "3":
             if not biblioteca:
                 print("La biblioteca è vuota.")
