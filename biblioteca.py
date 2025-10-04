@@ -1,6 +1,4 @@
 def carica_da_file(file_path):
-    # importo itemgetter per ordinare il dizionario per sezione
-    from operator import itemgetter
     try:
         # apro il file, il cui nome è passo come argomento dal main() e creo un dizionario vuoto che vado poi a riempire con i libri
         infile = open(file_path, 'r', encoding='utf-8')
@@ -18,13 +16,9 @@ def carica_da_file(file_path):
                 linea_pulita = line.strip("\n").split( "," )
                 biblioteca[linea_pulita[0]] =[linea_pulita[1],linea_pulita[2],linea_pulita[3],linea_pulita[4]]
         infile.close()
-
-        biblioteca = {k: v for k, v in sorted(biblioteca.items(), key=itemgetter(3))}
-
         # stampo il dizionario per verifica per mostrarlo all'utente
         for titolo, info in biblioteca.items():
             print(f"titolo: {titolo}  informazioni: {info}")
-
         # se l'operazione di apertura va a buon fine restituisco il dizionario
         return biblioteca
     except FileNotFoundError:
