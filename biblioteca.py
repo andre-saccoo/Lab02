@@ -122,7 +122,7 @@ def main():
                 print("Libro non trovato.")
 
         elif scelta == "4":
-            #comtrollo la libreria non sia vuota
+            #controllo la libreria non sia vuota
             if not biblioteca:
                 print("La biblioteca è vuota.")
                 continue
