@@ -19,10 +19,9 @@ def carica_da_file(file_path):
                 biblioteca[linea_pulita[0]] =[linea_pulita[1],linea_pulita[2],linea_pulita[3],linea_pulita[4]]
         infile.close()
 
-        biblioteca = {k: v for k, v in sorted(biblioteca.items(), key=itemgetter(1))}
+        biblioteca = {k: v for k, v in sorted(biblioteca.items(), key=itemgetter(3))}
 
         # stampo il dizionario per verifica per mostrarlo all'utente
-        #print(f"biblioteca: {biblioteca}")
         for titolo, info in biblioteca.items():
             print(f"titolo: {titolo}  informazioni: {info}")
 
