@@ -61,12 +61,18 @@ def aggiungi_libro(biblioteca, file_path):
         infile.close()
         return True, biblioteca
 
-'''
+
 def cerca_libro(biblioteca, titolo):
-    """Cerca un libro nella biblioteca dato il titolo"""
-    # TODO
+    lista_chiavi=[]
+    for chiave in biblioteca:
+        lista_chiavi.append(chiave.lower())
+    if titolo.lower() in lista_chiavi:
+        return True
+    else:
+        return False
 
 
+'''
 def elenco_libri_sezione_per_titolo(biblioteca, sezione):
     """Ordina i titoli di una data sezione della biblioteca in ordine alfabetico"""
     # TODO
@@ -104,19 +110,21 @@ def main():
             else:
                 print("Non è stato possibile aggiungere il libro")
 
-'''
+
         elif scelta == "3":
+            #comtrollo la libreria non sia vuota
             if not biblioteca:
                 print("La biblioteca è vuota.")
                 continue
 
+            #inserisco il titolo da cercare e lo passo alla funzione cerca libro, restituisce True o None
             titolo = input("Inserisci il titolo del libro da cercare: ").strip()
             risultato = cerca_libro(biblioteca, titolo)
             if risultato:
-                print(f"Libro trovato: {risultato}")
+                print(f"Libro trovato!")
             else:
                 print("Libro non trovato.")
-
+        '''
         elif scelta == "4":
             if not biblioteca:
                 print("La biblioteca è vuota.")
@@ -138,7 +146,7 @@ def main():
             break
         else:
             print("Opzione non valida. Riprova.")
-'''
+        '''
 
 if __name__ == "__main__":
     main()
