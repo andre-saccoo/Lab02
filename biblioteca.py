@@ -1,9 +1,9 @@
-'''def carica_da_file(file_path):
+def carica_da_file(file_path):
     # importo itemgetter per ordinare il dizionario per sezione
     from operator import itemgetter
     try:
         # apro il file, il cui nome è passo come argomento dal main() e creo un dizionario vuoto che vado poi a riempire con i libri
-        infile = open("file_path", 'r')
+        infile = open(file_path, 'r', encoding='utf-8')
         biblioteca=dict()
         # uso un contatore per gestire la prima riga contenente il numero di sezioni, dalla seconda l'elenco di libri
         cont=0
@@ -16,23 +16,27 @@
             else:
                 # prendo gli elementi li pulisco e li sistemo nel dizionario
                 linea_pulita = line.strip("\n").split( "," )
-                biblioteca['titolo',linea_pulita[0]] ={'autore':linea_pulita[1],'anno':linea_pulita[2],'sezioni':linea_pulita[3]}
-        biblioteca=sorted(biblioteca.items(), key=itemgetter(3))
-        # stampo il dizionario per verifica per mostrarlo all'utente
-        print(biblioteca)
+                biblioteca[linea_pulita[0]] =[linea_pulita[1],linea_pulita[2],linea_pulita[3]]
         infile.close()
+
+        biblioteca = {k: v for k, v in sorted(biblioteca.items(), key=lambda x: x[1][2])}
+
+        #biblioteca = sorted(biblioteca.items(), key=itemgetter(3))
+        # stampo il dizionario per verifica per mostrarlo all'utente
+        for libro in biblioteca:
+
         # se l'operazione di apertura va a buon fine restituisco il dizionario
         return biblioteca
     except FileNotFoundError:
         # se l'apertura fallisce restituisco none come richiesto dal testo
-        return None'''
+        return None
 
-
+'''
 def aggiungi_libro(biblioteca, file_path):
     # controllo se file file_path è già stato aperto sopra
     if not biblioteca:
         print("Prima carica la biblioteca da file.")
-        continue
+        return None,biblioteca
 
     # chiedo il nome del libro che si vuole aggiungere
     titolo = input("Titolo del libro: ").strip()
@@ -49,12 +53,14 @@ def aggiungi_libro(biblioteca, file_path):
             sezione = int(input("Sezione: ").strip())
         except ValueError:
             print("Errore: inserire valori numerici validi per anno, pagine e sezione.")
-            continue
+            return None, biblioteca
+
         biblioteca[titolo]={autore, anno, pagine, sezione}
         infile = open(file_path, 'a')
-        infile.(f'{titolo},{anno},{pagine},{sezione}\n')
+        infile.write(f'{titolo},{anno},{pagine},{sezione}\n')
         infile.close()
         return True, biblioteca
+'''
 
 
 
@@ -89,7 +95,6 @@ def main():
         print("5. Esci")
         scelta = input("Scegli un'opzione >> ").strip()
 
-
        #scelta 1 creo la struttura dati caricando dal file indicato l'elenco dei libri
         if scelta == "1":
             while True:
@@ -97,6 +102,7 @@ def main():
                 if biblioteca is not None:
                     break
 
+        '''
         # scelta 2 aggiungo alla struttura dati il libro richiesto controllando non sia già presente, lo aggiungo anche al file
         elif scelta == "2":
             aggiunto=False
@@ -105,14 +111,18 @@ def main():
             if aggiunto:
                 print(f"Libro aggiunto con successo!")
             else:
-                print("Non è stato possibile aggiungere il libro, è già presente.")
+                print("Non è stato possibile aggiungere il libro")
 
 
 
 
 
 
-'''
+
+
+
+
+
         elif scelta == "3":
             if not biblioteca:
                 print("La biblioteca è vuota.")
