@@ -72,11 +72,10 @@ def cerca_libro(biblioteca, titolo):
         return False
 
 
-'''
+
 def elenco_libri_sezione_per_titolo(biblioteca, sezione):
-    """Ordina i titoli di una data sezione della biblioteca in ordine alfabetico"""
-    # TODO
-'''
+    if libro[2]==sezione:
+    print(libro)
 
 def main():
     biblioteca = dict()
@@ -124,14 +123,17 @@ def main():
                 print(f"Libro trovato!")
             else:
                 print("Libro non trovato.")
-        '''
+
+
+
         elif scelta == "4":
+            #comtrollo la libreria non sia vuota
             if not biblioteca:
                 print("La biblioteca è vuota.")
                 continue
 
             try:
-                sezione = int(input("Inserisci numero della sezione da ordinare: ").strip())
+                sezione = int(input("Inserisci numero della sezione: ").strip())
             except ValueError:
                 print("Errore: inserire un valore numerico valido.")
                 continue
@@ -146,7 +148,6 @@ def main():
             break
         else:
             print("Opzione non valida. Riprova.")
-        '''
 
 if __name__ == "__main__":
     main()
