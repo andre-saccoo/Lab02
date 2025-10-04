@@ -16,7 +16,7 @@ def carica_da_file(file_path):
             else:
                 # prendo gli elementi li pulisco e li sistemo nel dizionario
                 linea_pulita = line.strip("\n").split( "," )
-                biblioteca[linea_pulita[0]] =[linea_pulita[1],linea_pulita[2],linea_pulita[3]]
+                biblioteca[linea_pulita[0]] =[linea_pulita[1],linea_pulita[2],linea_pulita[3],linea_pulita[4]]
         infile.close()
 
         biblioteca = {k: v for k, v in sorted(biblioteca.items(), key=itemgetter(1))}
@@ -71,11 +71,10 @@ def cerca_libro(biblioteca, titolo):
     else:
         return False
 
-
-
 def elenco_libri_sezione_per_titolo(biblioteca, sezione):
-    if libro[2]==sezione:
-    print(libro)
+    for libro, info in biblioteca.items():
+        if int(info[3])==sezione:
+            print(libro)
 
 def main():
     biblioteca = dict()
