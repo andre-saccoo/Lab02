@@ -50,7 +50,7 @@ def aggiungi_libro(biblioteca, file_path):
 
         biblioteca[titolo]={autore, anno, pagine, sezione}
         infile = open(file_path, 'a')
-        infile.write(f'{titolo},{anno},{pagine},{sezione}\n')
+        infile.write(f'{titolo},{autore},{anno},{pagine},{sezione}\n')
         infile.close()
         return True, biblioteca
 
@@ -66,7 +66,7 @@ def cerca_libro(biblioteca, titolo):
 
 def elenco_libri_sezione_per_titolo(biblioteca, sezione):
     for libro, info in biblioteca.items():
-        if int(info[3])==sezione:
+        if int(info[4])==sezione:
             print(libro)
 
 
