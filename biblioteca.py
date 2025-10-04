@@ -66,7 +66,7 @@ def cerca_libro(biblioteca, titolo):
 
 def elenco_libri_sezione_per_titolo(biblioteca, sezione):
     for libro, info in biblioteca.items():
-        if int(info[4])==sezione:
+        if int(info[3])==sezione:
             print(libro)
 
 
