@@ -3,6 +3,7 @@ def carica_da_file(file_path):
     try:
         # apro il file, il cui nome è passo come argomento dal main() e creo un dizionario vuoto che vado poi a riempire con i libri
         infile = open(file_path, 'r', encoding='utf-8')
+        #creo un dizionario vuoto che verrà poi riempito con i nomi dei libri come chiave e una lista di 4 elementi contenenti le informazioni del libro
         biblioteca=dict()
         # uso un contatore per gestire la prima riga contenente il numero di sezioni, dalla seconda l'elenco di libri
         cont=0
@@ -107,7 +108,7 @@ def main():
                 print("Non è stato possibile aggiungere il libro")
 
         elif scelta == "3":
-            #comtrollo la libreria non sia vuota
+            #controllo la libreria non sia vuota
             if not biblioteca:
                 print("La biblioteca è vuota.")
                 continue
@@ -142,4 +143,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
