@@ -117,7 +117,7 @@ def main():
                 print("La biblioteca è vuota.")
                 continue
 
-            #inserisco il titolo da cercare e lo passo alla funzione cerca libro, restituisce True o None
+            #inserisco il titolo da cercare e lo passo alla funzione cerca libro dopo averlo pulito, restituisce True o None
             titolo = input("Inserisci il titolo del libro da cercare: ").strip()
             risultato = cerca_libro(biblioteca, titolo)
             if risultato:
