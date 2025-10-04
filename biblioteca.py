@@ -18,7 +18,7 @@ def carica_da_file(file_path):
         infile.close()
         # stampo il dizionario per verifica per mostrarlo all'utente
         for titolo, info in biblioteca.items():
-            print(f"titolo: {titolo}  informazioni: {info}")
+            print(f" {titolo}  :  {info}")
         # se l'operazione di apertura va a buon fine restituisco il dizionario
         return biblioteca
     except FileNotFoundError:
@@ -68,6 +68,7 @@ def elenco_libri_sezione_per_titolo(biblioteca, sezione):
     for libro, info in biblioteca.items():
         if int(info[3])==sezione:
             print(libro)
+
 
 def main():
     biblioteca = dict()
@@ -131,9 +132,6 @@ def main():
                 continue
 
             titoli = elenco_libri_sezione_per_titolo(biblioteca, sezione)
-            if titoli is not None:
-                print(f'\nSezione {sezione} ordinata:')
-                print("\n".join([f"- {titolo}" for titolo in titoli]))
 
         elif scelta == "5":
             print("Uscita dal programma...")
