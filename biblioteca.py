@@ -48,7 +48,7 @@ def aggiungi_libro(biblioteca, file_path):
             print("Errore: inserire valori numerici validi per anno, pagine e sezione.")
             return None, biblioteca
 
-        biblioteca[titolo]={autore, anno, pagine, sezione}
+        biblioteca[titolo]=[autore, anno, pagine, sezione]
         infile = open(file_path, 'a')
         infile.write(f'{titolo},{autore},{anno},{pagine},{sezione}\n')
         infile.close()
